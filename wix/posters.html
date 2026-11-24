@@ -449,7 +449,7 @@ function card(p, i){
   var n = r ? parseFloat(r.amount) : NaN;
   var href = esc((p.url && p.url.url) || (BASE + p.slug));
   var src = image(p, 800);
-  var badge = ["Urban Spec / " + two(i + 1), ribbon(p)].filter(Boolean).join(" · ");
+  var badge = ["Digital download", ribbon(p)].filter(Boolean).join(" · ");
   var tl = tagline(p.plainDescription);
   return '<a href="' + href + '" class="poster-card" target="_top">' +
     '<div class="poster-img">' + (src ? '<img src="' + src + '" alt="' + esc(String(p.name || "").replace(/^poster\s*[:\-–—]?\s*/i, "")) + ' poster" loading="lazy">' : '') + '</div>' +
@@ -468,7 +468,7 @@ function draw(posters){
     grid.innerHTML = '<div class="empty"><p class="mono-label">Coming soon</p><p>The first posters are being printed and checked. Check back shortly.</p></div>';
     return;
   }
-  /* oldest first, so the series numbers stay stable as new posters arrive */
+  /* oldest first: new posters are added at the end */
   posters.sort(function(a, b){ return new Date(a.createdDate || 0) - new Date(b.createdDate || 0); });
   grid.innerHTML = posters.map(card).join("");
   var newest = posters[posters.length - 1], src = image(newest, 760);

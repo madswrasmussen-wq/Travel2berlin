@@ -15,7 +15,7 @@ Et produkt er en plakat, når **navnet starter med "Poster"**. Så vises det på
 - **Beskrivelse:** Første sætning bliver teksten på kortet. Skriv den som én kort sætning.
 - **Billede:** Det første produktbillede, helst i formatet 4:5. Det er `*_preview.png` fra eksporten.
 - **Fil:** zip-filen fra `posters/dist/`.
-- **Rækkefølge:** Den ældste plakat vises først, så numrene (Urban Spec / 01, 02 …) ikke ændrer sig. Den nyeste vises også øverst på siden.
+- **Rækkefølge:** Den ældste plakat vises først, og nye plakater kommer bagerst. Den nyeste vises også øverst på siden.
 
 ## Sæt siden op (første gang)
 
