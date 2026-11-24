@@ -1,0 +1,11 @@
+{
+  "name": "travel2berlin-posters",
+  "private": true,
+  "description": "Urban Spec poster series — templates and download-package export",
+  "scripts": {
+    "export": "node scripts/export.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

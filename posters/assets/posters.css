@@ -41,6 +41,8 @@ body {
 .poster {
   --accent: var(--signal);
   --ground: var(--stone);
+  --k: 1;
+  --f: 1;
   width: 794px;
   height: 1123px;
   flex-shrink: 0;
