@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin Walks — Self-Guided Walking Tours | Travel2Berlin</title>
+<meta name="description" content="Self-guided walking tours of Berlin that make you see what you'd walk past, understand what you'd only photograph, and feel what a guidebook can't deliver.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --berlin-night: #1A1A2E;
+    --berlin-dark: #12121F;
+    --spree-gold: #C9A84C;
+    --spree-gold-dim: #A8893A;
+    --fog-white: #F5F4F0;
+    --fog-dim: #C8C7C3;
+    --mist: rgba(245,244,240,0.06);
+    --mist-strong: rgba(245,244,240,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--berlin-night);
+    color: var(--fog-white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 760px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%),
+      linear-gradient(160deg, #12121F 0%, #1A1A2E 50%, #151525 100%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.15;
+  }
+
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 120%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--spree-gold), transparent);
+    transform: rotate(-8deg);
+  }
+
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    top: 75%;
+    left: -10%;
+    width: 120%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--spree-gold), transparent);
+    transform: rotate(-8deg);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4rem;
+    max-width: 800px;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--spree-gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--fog-dim);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--spree-gold);
+    color: var(--berlin-dark);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #D4B558;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--fog-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,244,240,0.2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--fog-white);
+    border-color: var(--fog-white);
+  }
+
+  .hero-scroll {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .hero-scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--spree-gold);
+    opacity: 0.4;
+  }
+
+  .hero-scroll-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+  }
+
+  /* ─── MANIFESTO BAND ─── */
+  .manifesto {
+    background: var(--berlin-dark);
+    border-top: 1px solid var(--mist-strong);
+    border-bottom: 1px solid var(--mist-strong);
+    padding: 5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .manifesto-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    padding-top: 0.4rem;
+  }
+
+  .manifesto-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: var(--fog-white);
+    font-style: italic;
+  }
+
+  .manifesto-text span {
+    color: var(--spree-gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ─── TOURS SECTION ─── */
+  .tours-section {
+    padding: 7rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--mist-strong);
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--mist-strong);
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--spree-gold);
+  }
+
+  /* ─── TOUR CARDS ─── */
+  .tours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .tour-card {
+    position: relative;
+    background: var(--berlin-dark);
+    padding: 3rem;
+    overflow: hidden;
+    transition: background 0.3s;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .tour-card:hover {
+    background: #161628;
+    border-color: var(--mist-strong);
+  }
+
+  .tour-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: linear-gradient(135deg, #161628, #1a1a30);
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .tour-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--spree-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tour-card:hover::before,
+  .tour-card.featured::before { opacity: 1; }
+
+  .tour-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .tour-badge.free {
+    color: #7EC8A0;
+    border-color: rgba(126,200,160,0.3);
+  }
+
+  .tour-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .tour-name em {
+    font-style: italic;
+    color: var(--spree-gold);
+  }
+
+  .tour-tagline {
+    color: var(--fog-dim);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .tour-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tour-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+    opacity: 0.6;
+  }
+
+  .meta-value {
+    font-size: 0.85rem;
+    color: var(--fog-white);
+    font-weight: 400;
+  }
+
+  .tour-stops {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stop-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--fog-dim);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--mist);
+  }
+
+  .stop-item:last-child { border-bottom: none; }
+
+  .stop-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--spree-gold);
+    opacity: 0.7;
+    min-width: 20px;
+  }
+
+  .tour-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--mist-strong);
+  }
+
+  .tour-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--spree-gold);
+  }
+
+  .tour-price.free-price {
+    color: #7EC8A0;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tour-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fog-white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s, color 0.2s;
+  }
+
+  .tour-card:hover .tour-cta {
+    gap: 0.8rem;
+    color: var(--spree-gold);
+  }
+
+  .tour-cta::after { content: '→'; }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-section {
+    padding: 7rem 3rem;
+    background: var(--berlin-dark);
+    border-top: 1px solid var(--mist-strong);
+  }
+
+  .how-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .how-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .how-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    margin-bottom: 1rem;
+  }
+
+  .how-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+
+  .step {
+    padding: 3rem 2.5rem;
+    background: var(--berlin-night);
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--mist-strong);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--fog-dim);
+    line-height: 1.8;
+  }
+
+  /* ─── QUOTE ─── */
+  .quote-section {
+    padding: 8rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--spree-gold);
+    opacity: 0.2;
+    line-height: 0.5;
+    margin-bottom: 2rem;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--fog-white);
+    margin-bottom: 2rem;
+  }
+
+  .quote-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+  }
+
+  /* ─── FOOTER CTA ─── */
+  .footer-cta {
+    background: linear-gradient(135deg, #12121F, #1A1A2E);
+    border-top: 1px solid var(--mist-strong);
+    padding: 7rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .footer-cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .footer-cta-title em {
+    font-style: italic;
+    color: var(--spree-gold);
+  }
+
+  .footer-cta-sub {
+    color: var(--fog-dim);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  footer {
+    background: var(--berlin-dark);
+    border-top: 1px solid var(--mist);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+    opacity: 0.4;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { padding: 0 1.5rem; }
+    .manifesto {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 3rem 1.5rem;
+    }
+    .tours-section { padding: 4rem 1.5rem; }
+    .tours-grid { grid-template-columns: 1fr; }
+    .tour-card.featured {
+      grid-column: 1;
+      grid-template-columns: 1fr;
+    }
+    .steps-grid { grid-template-columns: 1fr; }
+    .how-section { padding: 4rem 1.5rem; }
+    .quote-section { padding: 4rem 1.5rem; }
+    .footer-cta { padding: 4rem 1.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .section-header { grid-template-columns: 1fr; }
+    .section-num { font-size: 3rem; }
+  }
+
+  /* last card spans full width when it would sit alone in its row */
+  .tours-grid > .tour-card:not(.featured):nth-child(even):last-child { grid-column: 1 / -1; }
+  .tour-skel { min-height: 360px; background: linear-gradient(90deg,#12121F 0%,#1c1c32 50%,#12121F 100%);
+    background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+  .tour-skel.wide { grid-column: 1 / -1; min-height: 520px; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  @media (max-width: 900px) {
+    .hero { min-height: 620px; }
+    .tours-grid > .tour-card:not(.featured):nth-child(even):last-child { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-content">
+    <p class="hero-label">Berlin Walks Collection</p>
+    <h1 class="hero-title">Walk the city.<br><em>Understand</em> it.</h1>
+    <p class="hero-sub">Self-guided tours built for people who want more than photographs. Every walk tells a story most visitors never get to hear.</p>
+    <div class="hero-cta">
+      <a href="#tours" class="btn-primary" onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'});return false;">See all walks</a>
+      <a href="https://www.travel2berlin.com/product-page/bwalk-002-kreuzberg" class="btn-ghost" target="_top">Start free with Kreuzberg →</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<div style="background: var(--berlin-dark); border-top: 1px solid var(--mist-strong); border-bottom: 1px solid var(--mist-strong);">
+  <div class="manifesto">
+    <span class="manifesto-label">The Idea</span>
+    <p class="manifesto-text">
+      Berlin doesn't give itself up easily. The city rewards people who slow down, look closely, and ask <span>why something is where it is</span>. These walks are built for those people.
+    </p>
+  </div>
+</div>
+
+<!-- TOURS -->
+<section class="tours-section" id="tours">
+  <div class="section-header">
+    <span class="section-num" id="walkCount">05</span>
+    <div>
+      <h2 class="section-title">The <em>walks</em> &amp; city kits</h2>
+    </div>
+  </div>
+
+  <div class="tours-grid" id="toursGrid">
+    <div class="tour-skel wide"></div>
+    <div class="tour-skel"></div><div class="tour-skel"></div>
+    <div class="tour-skel"></div><div class="tour-skel"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="how-header">
+      <p class="how-label">How it works</p>
+      <h2 class="how-title">Simple by design</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Download instantly</h3>
+        <p class="step-desc">Pay once and your guide arrives immediately. PDF guides are designed for your phone screen — no app, no account, no Wi-Fi needed once downloaded.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Open the map</h3>
+        <p class="step-desc">Every paid walk includes an interactive browser map with all stops, the route line, toilet locations, and coffee breaks. Tap a stop for context. Tap "Next" to move on.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Walk at your pace</h3>
+        <p class="step-desc">No group, no guide, no rush. The walks work on any day, in any season. Miss a stop, linger at one — the route is yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">These walks are built for people who want to understand Berlin — not just photograph it. The detail at every stop changes what you see.</p>
+  <p class="quote-source">Travel2Berlin — Berlin Walks Collection</p>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <p class="footer-cta-label">Start walking</p>
+  <h2 class="footer-cta-title">Your first walk<br>is <em>free</em></h2>
+  <p class="footer-cta-sub">Download the Kreuzberg walk and see what the collection is about. No email required. No catch.</p>
+  <a href="https://www.travel2berlin.com/product-page/bwalk-002-kreuzberg" class="btn-primary" target="_top">Get Kreuzberg: Both Sides — Free</a>
+</section>
+
+<footer>
+  <p>© 2026 Travel2Berlin</p>
+  <p>Self-Guided Walking Tours of Berlin</p>
+</footer>
+
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   Travel2Berlin — self-updating walks.
+   Every visible product in the Wix Store is shown here automatically,
+   with its live price. The texts below only make known products look
+   richer; a NEW product appears on its own without any changes here.
+   ───────────────────────────────────────────────────────────── */
+var CLIENT_ID = "e283f64a-cb74-4ee3-bf78-b7117564dc79"; // same read-only app as the Berlin Map
+var BASE = "https://www.travel2berlin.com/product-page/";
+
+var KNOWN = {
+  "wall-walk-berlin-guide": {
+    order: 1, featured: true, fallback: 7,
+    badge: "Most Popular · {p}", cta: "Get the walk",
+    name: "The Wall Walk:<br><em>Following the Trace</em>",
+    tagline: "5.5 km through the actual path of the Berlin Wall. From a ghost station where trains passed without stopping, to the spot where history became a souvenir shop.",
+    meta: [["Distance","5.5 km"],["Duration","2.5–3 hours"],["Start","Nordbahnhof"],["End","Checkpoint Charlie"],["Includes","PDF + Map"]],
+    stops: ["Nordbahnhof — The Ghost Station","Bernauer Straße Memorial","The Documentation Centre","The Cobblestone Line","Brandenburg Gate","Potsdamer Platz","Topography of Terror","The Last Wall Segment","Zimmerstraße","Checkpoint Charlie"]
+  },
+  "bwalk-002-kreuzberg": {
+    order: 2, fallback: 0, badge: "Free Download", cta: "Download now",
+    name: "Kreuzberg:<br><em>Both Sides</em>",
+    tagline: "Kreuzberg isn't one neighborhood — it's two, separated by a canal and thirty years of gentrification. This walk crosses the line that isn't on any map.",
+    meta: [["Distance","3.2 km"],["Duration","75–90 min"],["Start","Mehringdamm"],["End","Görlitzer Bahnhof"]]
+  },
+  "first-time-berlin-done-right-a-travel2berlin-city-kit-pdf": {
+    order: 3, fallback: 10, badge: "New · City Kit · {p}", cta: "Get the kit",
+    name: "First-Time Berlin,<br><em>Done Right</em>",
+    tagline: "Three days, planned by seventeen years of getting Berlin right. The plan, the ticket mistake that costs tourists money, what to skip, and how to get a table — in one 9-page PDF.",
+    meta: [["Format","PDF City Kit"],["Pages","9"],["Includes","Pocket cheat sheet"]]
+  },
+  "the-ultimate-3-day-berlin-itinerary-how-to-experience-berlin-like-a-local-wit": {
+    order: 4, fallback: 7, badge: "City Guide · {p}", cta: "Get the guide",
+    name: "3-Day Berlin<br><em>Itinerary</em>",
+    tagline: "Three full days, planned so you don't have to. History, neighborhoods, and the slower, more local side of Berlin — morning to evening, day by day.",
+    meta: [["Days","3 full days"],["Format","PDF Guide"],["Includes","U-Bahn routing"]]
+  },
+  "bwalk-003-neukolln-is-not-what-you-think": {
+    order: 5, fallback: 0, badge: "Free Download", cta: "Download now",
+    name: "Neukölln:<br><em>Not What You Think</em>",
+    tagline: "A medieval village with a working blacksmith. A baroque garden in a gravel pit. 355 hectares of runway Berlin voted to keep empty. Hermannplatz to Tempelhofer Feld.",
+    meta: [["Distance","4 km"],["Duration","90–110 min"],["Start","Hermannplatz"],["End","Tempelhofer Feld"]]
+  },
+  "the-wall-walk-school-edition": {
+    order: 9, fallback: 35, badge: "Educator Pack · {p}", cta: "Get the pack",
+    name: "The Wall Walk:<br><em>School Edition</em>",
+    tagline: "A curriculum-aligned teacher's pack built around the Wall Walk route — lesson slides, student workbook, reference cards, and a full risk assessment template.",
+    meta: [["Distance","5.5 km"],["Duration","3–4 hours"],["Format","Teacher's Guide + Workbook"]]
+  }
+};
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+function money(n){ if (isNaN(n)) return ""; if (n === 0) return "Free"; return "€" + (n % 1 === 0 ? n : n.toFixed(2)); }
+
+/* A product we have no texts for yet: build a card from the store data */
+function generic(p, n){
+  var nm = String(p.name || "").replace(/^BWALK-\d+\s*/i, "");
+  var parts = nm.split(/\s+[—–]\s+/);
+  var low = nm.toLowerCase();
+  var kind = low.indexOf("city kit") > -1 ? "City Kit" : low.indexOf("itinerary") > -1 ? "City Guide" : "Self-Guided Walk";
+  var title = esc(parts[0]).replace(/:\s*/, ":<br><em>") + (parts[0].indexOf(":") > -1 ? "</em>" : "");
+  return {
+    order: 6, fallback: n,
+    badge: n === 0 ? "Free Download" : "New · " + kind + " · {p}",
+    cta: n === 0 ? "Download now" : (kind === "City Kit" ? "Get the kit" : "Get it"),
+    name: title,
+    tagline: esc(parts.slice(1).join(" — ")),
+    meta: []
+  };
+}
+
+function card(k, slug, url, n){
+  var free = n === 0;
+  var badge = k.badge.replace("{p}", money(n));
+  var meta = (k.meta || []).map(function(m){
+    return '<div class="tour-meta-item"><span class="meta-label">' + esc(m[0]) + '</span><span class="meta-value">' + esc(m[1]) + '</span></div>';
+  }).join("");
+  var info =
+    '<span class="tour-badge' + (free ? ' free' : '') + '">' + esc(badge) + '</span>' +
+    '<h3 class="tour-name">' + k.name + '</h3>' +
+    (k.tagline ? '<p class="tour-tagline">' + k.tagline + '</p>' : '') +
+    (meta ? '<div class="tour-meta">' + meta + '</div>' : '') +
+    '<div class="tour-price-row"><span class="tour-price' + (free ? ' free-price' : '') + '">' + money(n) + '</span>' +
+    '<span class="tour-cta">' + esc(k.cta) + '</span></div>';
+  var href = esc(url || (BASE + slug));
+  if (k.featured) {
+    var stops = (k.stops || []).map(function(s, i){
+      return '<div class="stop-item"><span class="stop-num">' + (i < 9 ? "0" : "") + (i + 1) + '</span> ' + esc(s) + '</div>';
+    }).join("");
+    return '<a href="' + href + '" class="tour-card featured" target="_top"><div>' + info + '</div>' +
+      '<div class="tour-stops"><div style="font-family:\'DM Mono\',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--spree-gold); margin-bottom:1rem; opacity:0.7;">' +
+      (k.stops || []).length + ' Stops</div>' + stops + '</div></a>';
+  }
+  return '<a href="' + href + '" class="tour-card" target="_top">' + info + '</a>';
+}
+
+function draw(list){
+  list.sort(function(a, b){ return a.k.order - b.k.order || b.d - a.d; });
+  document.getElementById("toursGrid").innerHTML = list.map(function(it){ return card(it.k, it.slug, it.url, it.n); }).join("");
+  var c = list.length;
+  document.getElementById("walkCount").textContent = (c < 10 ? "0" : "") + c;
+}
+
+/* If the store can't be reached, show the known products with their usual prices */
+function fallback(){
+  draw(Object.keys(KNOWN).map(function(slug){ return { k: KNOWN[slug], slug: slug, url: "", n: KNOWN[slug].fallback, d: 0 }; }));
+}
+
+/* Posters have their own page (/posters): leave them out here.
+   A poster is a product whose name starts with "Poster" or whose URL starts with "poster". */
+function isPoster(p){ return /^poster/i.test(p.name || "") || /^poster/i.test(p.slug || ""); }
+
+function live(products){
+  var list = products.filter(function(p){ return !isPoster(p); }).map(function(p){
+    var r = p.actualPriceRange && p.actualPriceRange.minValue;
+    var n = r ? parseFloat(r.amount) : NaN;
+    var k = KNOWN[p.slug] || generic(p, n);
+    return { k: k, slug: p.slug, url: p.url && p.url.url, n: isNaN(n) ? k.fallback : n, d: new Date(p.createdDate || 0).getTime() };
+  });
+  draw(list);
+}
+
+fallback(); /* instant: no waiting for the store */
+fetch("https://www.wixapis.com/oauth2/token", {
+  method: "POST", headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ clientId: CLIENT_ID, grantType: "anonymous" })
+})
+.then(function(r){ return r.json(); })
+.then(function(t){
+  return fetch("https://www.wixapis.com/stores/v3/products/query", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Authorization": t.access_token },
+    body: JSON.stringify({ fields: ["URL"], query: { cursorPaging: { limit: 100 } } })
+  });
+})
+.then(function(r){ return r.json(); })
+.then(function(d){ if (d && d.products && d.products.length) live(d.products); })
+.catch(function(){ /* keep the instant version */ });
+</script>
+</body>
+</html>

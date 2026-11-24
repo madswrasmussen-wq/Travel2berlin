@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin Posters — Printable Wall Art | Travel2Berlin</title>
+<meta name="description" content="Printable Berlin posters from Travel2Berlin. Download once, print at any size — every poster comes in five formats from A5 to 60×90 cm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* Same tokens as the Berlin Walks page */
+  :root {
+    --berlin-night: #1A1A2E;
+    --berlin-dark: #12121F;
+    --spree-gold: #C9A84C;
+    --fog-white: #F5F4F0;
+    --fog-dim: #C8C7C3;
+    --mist: rgba(245,244,240,0.06);
+    --mist-strong: rgba(245,244,240,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--berlin-night);
+    color: var(--fog-white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .mono-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 3rem 5rem;
+    background: linear-gradient(160deg, #12121F 0%, #1A1A2E 50%, #151525 100%);
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-label { margin-bottom: 1.5rem; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--spree-gold); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--fog-dim);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--spree-gold);
+    color: var(--berlin-dark);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #D4B558; transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--fog-dim);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,244,240,0.2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--fog-white); border-color: var(--fog-white); }
+
+  /* Hero image: the newest poster, filled in from the store */
+  .hero-art {
+    justify-self: center;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 5;
+    background: var(--berlin-dark);
+    border: 1px solid var(--mist-strong);
+    overflow: hidden;
+  }
+  .hero-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ─── IDEA BAND ─── */
+  .band { background: var(--berlin-dark); border-top: 1px solid var(--mist-strong); border-bottom: 1px solid var(--mist-strong); }
+  .manifesto {
+    padding: 4.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .manifesto .mono-label { padding-top: 0.5rem; }
+  .manifesto-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .manifesto-text span { color: var(--spree-gold); font-style: normal; font-weight: 600; }
+
+  /* ─── POSTERS ─── */
+  .posters-section { padding: 7rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--mist-strong);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--mist-strong);
+    line-height: 1;
+  }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 600; line-height: 1.2; }
+  .section-title em { font-style: italic; color: var(--spree-gold); }
+
+  .posters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+  }
+
+  .poster-card {
+    position: relative;
+    background: var(--berlin-dark);
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .poster-card:hover, .poster-card:focus-visible { background: #161628; border-color: var(--mist-strong); }
+  .poster-card:focus-visible { outline: 2px solid var(--spree-gold); outline-offset: 2px; }
+  .poster-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--spree-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+  .poster-card:hover::before { opacity: 1; }
+
+  .poster-img {
+    aspect-ratio: 4 / 5;
+    background: #E6E5E1;
+    overflow: hidden;
+  }
+  .poster-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .poster-card:hover .poster-img img { transform: scale(1.03); }
+
+  .poster-body { padding: 1.8rem 1.8rem 1.6rem; display: flex; flex-direction: column; flex-grow: 1; }
+  .poster-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--spree-gold);
+    margin-bottom: 0.9rem;
+  }
+  .poster-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .poster-name em { font-style: italic; color: var(--spree-gold); }
+  .poster-tagline { color: var(--fog-dim); font-size: 0.88rem; line-height: 1.7; }
+  .poster-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--mist-strong);
+  }
+  .poster-tagline { margin-bottom: 1.6rem; }
+  .poster-price { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--spree-gold); }
+  .poster-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .poster-cta::after { content: '→'; }
+  .poster-card:hover .poster-cta { gap: 0.8rem; color: var(--spree-gold); }
+
+  .poster-skel { aspect-ratio: 4 / 6.2; background: linear-gradient(90deg,#12121F 0%,#1c1c32 50%,#12121F 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  .empty {
+    grid-column: 1 / -1;
+    background: var(--berlin-dark);
+    padding: 4rem 3rem;
+    text-align: center;
+  }
+  .empty p { color: var(--fog-dim); margin-top: 0.75rem; }
+
+  /* ─── FORMATS ─── */
+  .how-section { padding: 7rem 3rem; background: var(--berlin-dark); border-top: 1px solid var(--mist-strong); }
+  .how-inner { max-width: 1200px; margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 4.5rem; }
+  .how-header .mono-label { margin-bottom: 1rem; }
+  .how-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-bottom: 5rem; }
+  .step { padding: 3rem 2.5rem; background: var(--berlin-night); }
+  .step-num { font-family: 'DM Mono', monospace; font-size: 3.5rem; font-weight: 300; color: var(--mist-strong); line-height: 1; margin-bottom: 1.5rem; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .step-desc { font-size: 0.88rem; color: var(--fog-dim); line-height: 1.8; }
+
+  .formats { max-width: 860px; margin: 0 auto; }
+  .formats-title { text-align: center; margin-bottom: 2rem; }
+  .formats-table { width: 100%; border-collapse: collapse; }
+  .formats-table th, .formats-table td { text-align: left; padding: 1rem 0; border-bottom: 1px solid var(--mist-strong); vertical-align: middle; }
+  .formats-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+  }
+  .formats-table td { font-size: 0.9rem; color: var(--fog-dim); }
+  .formats-table td:first-child { width: 4.5rem; }
+  .formats-table td.ratio { font-family: 'DM Mono', monospace; color: var(--fog-white); font-size: 0.85rem; width: 9rem; }
+  .shape { display: block; border: 1px solid var(--spree-gold); width: 22px; }
+  .formats-note { text-align: center; color: var(--fog-dim); font-size: 0.85rem; margin-top: 1.5rem; }
+
+  footer {
+    background: var(--berlin-dark);
+    border-top: 1px solid var(--mist);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fog-dim); opacity: 0.6; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .posters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .hero { padding: 4rem 1.5rem 3.5rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-art { max-width: 320px; justify-self: start; }
+    .manifesto { grid-template-columns: 1fr; gap: 1.25rem; padding: 3rem 1.5rem; }
+    .posters-section { padding: 4rem 1.5rem; }
+    .section-header { grid-template-columns: 1fr; gap: 0.5rem; }
+    .section-num { font-size: 3rem; }
+    .how-section { padding: 4rem 1.5rem; }
+    .steps-grid { grid-template-columns: 1fr; margin-bottom: 3.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .posters-grid { grid-template-columns: 1fr; }
+    .formats-table td.ratio { width: 6.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="mono-label hero-label">Urban Spec · Poster Series</p>
+      <h1 class="hero-title">Berlin,<br><em>by the numbers.</em></h1>
+      <p class="hero-sub">Printable posters about the city we know best. Download once, print at any size — every poster comes in five formats, from A5 to 60×90 cm.</p>
+      <div class="hero-cta">
+        <a href="#posters" class="btn-primary" onclick="document.getElementById('posters').scrollIntoView({behavior:'smooth'});return false;">See the posters</a>
+        <a href="#formats" class="btn-ghost" onclick="document.getElementById('formats').scrollIntoView({behavior:'smooth'});return false;">Which size fits my frame? →</a>
+      </div>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- IDEA -->
+<div class="band">
+  <div class="manifesto">
+    <span class="mono-label">The Idea</span>
+    <p class="manifesto-text">A city is a sum of dates, heights and distances. These posters take the numbers behind Berlin and turn them into something you'd <span>want on your wall</span>.</p>
+  </div>
+</div>
+
+<!-- POSTERS -->
+<section class="posters-section" id="posters">
+  <div class="section-header">
+    <span class="section-num" id="posterCount">00</span>
+    <h2 class="section-title">The <em>posters</em></h2>
+  </div>
+  <div class="posters-grid" id="postersGrid" aria-live="polite">
+    <div class="poster-skel"></div><div class="poster-skel"></div><div class="poster-skel"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS + FORMATS -->
+<section class="how-section" id="formats">
+  <div class="how-inner">
+    <div class="how-header">
+      <p class="mono-label">How it works</p>
+      <h2 class="how-title">Print it your way</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Download instantly</h3>
+        <p class="step-desc">Pay once and the poster arrives straight away as one download. No shipping, no waiting, no tube to unpack.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Pick your format</h3>
+        <p class="step-desc">Five formats are included. Each one is laid out for its own shape, so nothing important gets cropped — whatever frame you own.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Print anywhere</h3>
+        <p class="step-desc">Vector PDFs stay sharp at any size, and 300 dpi JPGs work with photo labs. Print at home, at a copy shop, or with any online print service.</p>
+      </div>
+    </div>
+
+    <div class="formats">
+      <p class="mono-label formats-title">Included in every download</p>
+      <table class="formats-table">
+        <thead>
+          <tr><th scope="col"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Shape</span></th><th scope="col">Format</th><th scope="col">Fits these sizes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="shape" style="height:31px" aria-hidden="true"></span></td><td class="ratio">A-sizes</td><td>A5, A4, A3, A2, A1, A0</td></tr>
+          <tr><td><span class="shape" style="height:31px" aria-hidden="true"></span></td><td class="ratio">5:7</td><td>50×70 cm · 5×7 in</td></tr>
+          <tr><td><span class="shape" style="height:33px" aria-hidden="true"></span></td><td class="ratio">2:3</td><td>20×30, 40×60, 60×90 cm · 12×18, 24×36 in</td></tr>
+          <tr><td><span class="shape" style="height:29px" aria-hidden="true"></span></td><td class="ratio">3:4</td><td>30×40, 45×60 cm · 9×12, 18×24 in</td></tr>
+          <tr><td><span class="shape" style="height:27.5px" aria-hidden="true"></span></td><td class="ratio">4:5</td><td>40×50 cm · 8×10, 16×20 in</td></tr>
+        </tbody>
+      </table>
+      <p class="formats-note">PDF + JPG for every format. For personal use — frame not included.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Travel2Berlin</p>
+  <p>Printable Berlin Posters</p>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   Travel2Berlin — self-updating poster shop.
+   Every visible Wix Store product whose NAME starts with "Poster"
+   is shown here automatically, with its image, live price and the
+   first lines of its description. A new poster needs no code change:
+     Name:        Poster: BERLIN — Typographic Index
+     Description: first sentence becomes the card text
+     Image:       the first product image (4:5 works best)
+   Optional: add a ribbon in Wix (e.g. "New") and it shows on the card.
+   ───────────────────────────────────────────────────────────── */
+var CLIENT_ID = "e283f64a-cb74-4ee3-bf78-b7117564dc79"; // same read-only app as the walks page
+var BASE = "https://www.travel2berlin.com/product-page/";
+
+function isPoster(p){ return /^poster/i.test(p.name || "") || /^poster/i.test(p.slug || ""); }
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+function money(n){ if (isNaN(n)) return ""; if (n === 0) return "Free"; return "€" + (n % 1 === 0 ? n : n.toFixed(2)); }
+function two(n){ return (n < 10 ? "0" : "") + n; }
+
+/* "Poster: BERLIN — Typographic Index" → BERLIN<br><em>Typographic Index</em> */
+function title(name){
+  var nm = String(name || "").replace(/^poster\s*[:\-–—]?\s*/i, "");
+  var parts = nm.split(/\s+[—–]\s+/);
+  return esc(parts[0]) + (parts.length > 1 ? "<br><em>" + esc(parts.slice(1).join(" — ")) + "</em>" : "");
+}
+
+/* First sentence of the description, max ~160 characters */
+function tagline(html){
+  /* the store sends the description as HTML: keep only the text, paragraphs as sentences */
+  var doc = new DOMParser().parseFromString(String(html || "").replace(/<\/p>/gi, "</p> "), "text/html");
+  var t = (doc.body.textContent || "").replace(/\s+/g, " ").trim();
+  if (!t) return "";
+  var m = t.match(/^.{20,160}?[.!?](\s|$)/);
+  if (m) return m[0].trim();
+  return t.length > 160 ? t.slice(0, 157).replace(/\s+\S*$/, "") + "…" : t;
+}
+
+/* Wix image, resized for the card */
+function image(p, w){
+  var img = p.media && p.media.main && p.media.main.image;
+  if (!img || !img.url) return "";
+  var id = img.id || img.url.split("/").pop();
+  var h = Math.round(w * 1.25);
+  return "https://static.wixstatic.com/media/" + id + "/v1/fill/w_" + w + ",h_" + h + ",al_c,q_85,enc_auto/" + encodeURIComponent(id);
+}
+
+function ribbon(p){
+  var r = p.ribbon || (p.additionalRibbons && p.additionalRibbons[0]);
+  return r && (r.name || r.text) ? (r.name || r.text) : "";
+}
+
+function card(p, i){
+  var r = p.actualPriceRange && p.actualPriceRange.minValue;
+  var n = r ? parseFloat(r.amount) : NaN;
+  var href = esc((p.url && p.url.url) || (BASE + p.slug));
+  var src = image(p, 800);
+  var badge = ["Urban Spec / " + two(i + 1), ribbon(p)].filter(Boolean).join(" · ");
+  var tl = tagline(p.plainDescription);
+  return '<a href="' + href + '" class="poster-card" target="_top">' +
+    '<div class="poster-img">' + (src ? '<img src="' + src + '" alt="' + esc(String(p.name || "").replace(/^poster\s*[:\-–—]?\s*/i, "")) + ' poster" loading="lazy">' : '') + '</div>' +
+    '<div class="poster-body">' +
+      '<span class="poster-badge">' + esc(badge) + '</span>' +
+      '<h3 class="poster-name">' + title(p.name) + '</h3>' +
+      (tl ? '<p class="poster-tagline">' + esc(tl) + '</p>' : '') +
+      '<div class="poster-price-row"><span class="poster-price">' + money(n) + '</span><span class="poster-cta">Get the poster</span></div>' +
+    '</div></a>';
+}
+
+function draw(posters){
+  var grid = document.getElementById("postersGrid");
+  document.getElementById("posterCount").textContent = two(posters.length);
+  if (!posters.length) {
+    grid.innerHTML = '<div class="empty"><p class="mono-label">Coming soon</p><p>The first posters are being printed and checked. Check back shortly.</p></div>';
+    return;
+  }
+  /* oldest first, so the series numbers stay stable as new posters arrive */
+  posters.sort(function(a, b){ return new Date(a.createdDate || 0) - new Date(b.createdDate || 0); });
+  grid.innerHTML = posters.map(card).join("");
+  var newest = posters[posters.length - 1], src = image(newest, 760);
+  if (src) document.getElementById("heroArt").innerHTML = '<img src="' + src + '" alt="">';
+}
+
+fetch("https://www.wixapis.com/oauth2/token", {
+  method: "POST", headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ clientId: CLIENT_ID, grantType: "anonymous" })
+})
+.then(function(r){ return r.json(); })
+.then(function(t){
+  return fetch("https://www.wixapis.com/stores/v3/products/query", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Authorization": t.access_token },
+    body: JSON.stringify({ fields: ["URL", "PLAIN_DESCRIPTION"], query: { cursorPaging: { limit: 100 } } })
+  });
+})
+.then(function(r){ return r.json(); })
+.then(function(d){ draw(((d && d.products) || []).filter(function(p){ return isPoster(p) && p.visible !== false; })); })
+.catch(function(){
+  document.getElementById("postersGrid").innerHTML = '<div class="empty"><p class="mono-label">Shop unavailable</p><p>The posters couldn\'t load right now. Please refresh the page in a moment.</p></div>';
+});
+</script>
+</body>
+</html>
