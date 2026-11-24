@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BERLIN — Divided City · Sheet 04</title>
+<link rel="stylesheet" href="assets/posters.css">
+<style>
+.p04 { --accent: var(--signal); --ground: var(--ink); color: var(--paper-white); padding: 48px; display: flex; gap: 40px; }
+.p04 .muted { color: var(--night-muted); }
+.p04 .spine { width: 200px; display: flex; justify-content: center; align-items: center; }
+.p04 .spine span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 236px; font-weight: 700; line-height: 0.8; letter-spacing: -0.03em; white-space: nowrap; }
+.p04 .body { flex-grow: 1; display: flex; flex-direction: column; gap: 18px; border-left: 1px solid var(--paper-white); padding-left: 32px; }
+.p04 .year { font-size: 168px; font-weight: 700; line-height: 0.8; letter-spacing: -0.05em; }
+.p04 .year.open { color: var(--accent); }
+.p04 .timeline { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.p04 .ticks { display: flex; justify-content: space-between; align-items: flex-end; height: 34px; }
+.p04 .tick { width: 2px; height: 16px; background: var(--paper-white); }
+.p04 .tick.major { height: 34px; }
+.p04 .tick.now { background: var(--accent); }
+.p04 .spec { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: auto; }
+.p04 .spec > div { padding-top: 12px; }
+.p04 .spec .value { font-size: 30px; font-weight: 500; }
+</style>
+</head>
+<body>
+<main class="poster p04">
+
+  <div class="spine"><span>BERLIN</span></div>
+
+  <div class="body">
+    <div class="row header-line">
+      <span>DIVIDED CITY</span>
+      <span>SHEET 04</span>
+    </div>
+
+    <span class="label muted" style="margin-top: 40px">13.08 — CONSTRUCTION BEGINS</span>
+    <span class="year">1961</span>
+
+    <div class="timeline" aria-hidden="true">
+      <div class="ticks">
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major"></i>
+      <i class="tick"></i>
+      <i class="tick"></i>
+      <i class="tick major now"></i>
+      </div>
+      <div class="row muted mono" style="font-size: 9px; letter-spacing: 0.2em">
+        <span>61</span><span>66</span><span>71</span><span>76</span><span>81</span><span>86</span><span>89</span>
+      </div>
+    </div>
+
+    <span class="label muted">09.11 — THE WALL OPENS</span>
+    <span class="year open">1989</span>
+
+    <div class="spec">
+      <div><span class="label muted">LENGTH</span><span class="value">155 km</span></div>
+      <div><span class="label muted">DURATION</span><span class="value">28 years</span></div>
+    </div>
+
+    <div class="row label" style="padding-top: 14px">
+      <span>52° 31′ N — 13° 24′ E</span>
+      <span>TRAVEL2BERLIN.COM</span>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,88 @@
+/* Travel2Berlin — Urban Spec poster series
+   Shared tokens and base styles. Every poster is a fixed A4 sheet (794 × 1123 px = 210 × 297 mm at 96 dpi).
+   Change a poster's colours by overriding --accent / --ground / --paper on its .poster element. */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&family=Space+Grotesk:wght@400;500;700&display=swap");
+
+:root {
+  --ink: #141414;
+  --ink-muted: #5C5C5A;
+  --rule-soft: #C9C8C3;
+  --stone: #E6E5E1;
+  --paper-white: #F4F3EF;
+  --night: #161616;
+  --night-text: #D6D6D2;
+  --night-muted: #BDBDB8;
+  --signal: #E4572E;
+  --ochre: #C9A227;
+  --blue: #2F5DA8;
+  --sky: #6FA0E8;
+
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-serif: "Instrument Serif", serif;
+}
+
+@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: #2A2A29;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+}
+
+.poster {
+  --accent: var(--signal);
+  --ground: var(--stone);
+  width: 794px;
+  height: 1123px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--ground);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Gallery thumbnails (794px-wide iframes) and narrow screens: show the sheet edge to edge */
+@media (max-width: 800px) {
+  body { padding: 0; }
+}
+
+@media print {
+  body { background: none; padding: 0; display: block; min-height: 0; }
+}
+
+/* Shared type */
+.mono { font-family: var(--font-mono); }
+.caps { text-transform: uppercase; }
+.muted { color: var(--ink-muted); }
+.row { display: flex; justify-content: space-between; }
+.label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; }
+.header-line { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; }
+
+/* Spec table: N equal columns divided by hairlines */
+.spec { display: grid; border-top: 1px solid currentColor; }
+.spec > div { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px 0 12px; border-left: 1px solid currentColor; }
+.spec > div:first-child { padding-left: 0; border-left: 0; }
+.spec > div:last-child { padding-right: 0; }
+
+/* Gallery page */
+.gallery { color: #F4F3EF; font-family: var(--font-sans); max-width: 1200px; width: 100%; }
+.gallery h1 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 24px; }
+.gallery ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, 254px); justify-content: center; gap: 32px; }
+.gallery a { color: inherit; text-decoration: none; display: flex; flex-direction: column; gap: 10px; }
+.gallery a:hover .thumb, .gallery a:focus-visible .thumb { outline: 2px solid var(--signal); outline-offset: 4px; }
+.gallery .thumb { width: 254px; height: 359px; overflow: hidden; position: relative; background: #000; }
+.gallery .thumb iframe { width: 794px; height: 1123px; border: 0; transform: scale(0.32); transform-origin: 0 0; pointer-events: none; position: absolute; top: 0; left: 0; }
+.gallery .name { font-size: 15px; font-weight: 500; }
+.gallery .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--night-muted); }

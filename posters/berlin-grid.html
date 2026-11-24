@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BERLIN — Letter Grid · Sheet 03</title>
+<link rel="stylesheet" href="assets/posters.css">
+<style>
+.p03 { --accent: var(--signal); --ground: var(--stone); padding: 48px; display: flex; flex-direction: column; gap: 16px; }
+.p03 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, 300px); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.p03 .cell { padding: 18px 20px 20px 20px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.p03 .cell.hl { background: var(--accent); }
+.p03 .cell .top, .p03 .cell .bottom { display: flex; justify-content: space-between; }
+.p03 .cell .top { align-items: baseline; }
+.p03 .cell .bottom { align-items: flex-end; }
+.p03 .cell .num { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+.p03 .cell .letter { font-size: 240px; font-weight: 700; line-height: 0.72; letter-spacing: -0.04em; }
+.p03 .cell .caption { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-align: right; max-width: 130px; line-height: 1.4; }
+.p03 .foot { margin-top: auto; }
+</style>
+</head>
+<body>
+<main class="poster p03">
+
+  <div class="row header-line">
+    <span>BERLIN / INDEX</span>
+    <span>SIX LETTERS · SIX NUMBERS</span>
+    <span>SHEET 03</span>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="top"><span class="label">01</span><span class="num">1237</span></div>
+      <div class="bottom"><span class="letter">B</span><span class="caption">Cölln first recorded. Founding year</span></div>
+    </div>
+    <div class="cell">
+      <div class="top"><span class="label">02</span><span class="num">1244</span></div>
+      <div class="bottom"><span class="letter">E</span><span class="caption">Berlin first recorded</span></div>
+    </div>
+    <div class="cell">
+      <div class="top"><span class="label">03</span><span class="num">13.08.61</span></div>
+      <div class="bottom"><span class="letter">R</span><span class="caption">Wall construction begins</span></div>
+    </div>
+    <div class="cell hl">
+      <div class="top"><span class="label">04</span><span class="num">09.11.89</span></div>
+      <div class="bottom"><span class="letter">L</span><span class="caption">The Wall opens</span></div>
+    </div>
+    <div class="cell">
+      <div class="top"><span class="label">05</span><span class="num">155 km</span></div>
+      <div class="bottom"><span class="letter">I</span><span class="caption">Border around West Berlin</span></div>
+    </div>
+    <div class="cell">
+      <div class="top"><span class="label">06</span><span class="num">030</span></div>
+      <div class="bottom"><span class="letter">N</span><span class="caption">Dialling code</span></div>
+    </div>
+  </div>
+
+  <div class="row label foot">
+    <span>52° 31′ N — 13° 24′ E</span>
+    <span>TRAVEL2BERLIN.COM</span>
+  </div>
+
+</main>
+</body>
+</html>

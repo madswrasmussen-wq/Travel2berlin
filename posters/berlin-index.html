@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BERLIN — Typographic Index · Urban Spec 02</title>
+<link rel="stylesheet" href="assets/posters.css">
+<style>
+.p02 { --accent: var(--ink); --paper: var(--paper-white); background: var(--night); padding: 40px 40px 64px 40px; }
+.p02 .sheet { position: relative; width: 714px; height: 1019px; background: var(--paper); overflow: hidden; color: var(--ink); }
+.p02 .big { position: absolute; font-size: 360px; font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; }
+.p02 .slash { position: absolute; left: 300px; top: 290px; width: 24px; height: 170px; background: var(--accent); transform: rotate(28deg); }
+.p02 .archive { position: absolute; left: 292px; top: 52px; display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); }
+.p02 .archive .date { font-size: 15px; font-weight: 500; letter-spacing: 0.7em; }
+.p02 .note { position: absolute; left: 372px; top: 292px; width: 96px; font-family: var(--font-mono); font-size: 10px; line-height: 1.5; letter-spacing: 0.08em; }
+.p02 .facts { position: absolute; left: 300px; top: 472px; width: 372px; display: flex; flex-direction: column; font-family: var(--font-mono); }
+.p02 .facts h2 { margin: 0; font-size: 10px; font-weight: 500; letter-spacing: 0.3em; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.p02 .facts dl { margin: 0; display: grid; grid-template-columns: 108px minmax(0, 1fr); column-gap: 12px; font-size: 11px; line-height: 1.3; }
+.p02 .facts dt, .p02 .facts dd { margin: 0; padding: 6px 0; border-bottom: 1px solid var(--rule-soft); }
+.p02 .facts dt { font-weight: 500; }
+.p02 .facts dt:last-of-type, .p02 .facts dd:last-of-type { border-bottom: 0; }
+.p02 .foot { position: absolute; left: 40px; right: 40px; bottom: 24px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--night-text); }
+.p02 .side { position: absolute; right: 13px; top: 561px; transform: translate(50%, -50%) rotate(90deg); white-space: nowrap; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4em; color: var(--night-text); }
+</style>
+</head>
+<body>
+<main class="poster p02">
+
+  <div class="sheet">
+    <div class="big" style="left: -22px; top: -58px">B</div>
+    <div class="big" style="right: -46px; top: 150px">E</div>
+    <div class="slash" aria-hidden="true"></div>
+    <div class="big" style="left: 30px; top: 430px">R</div>
+    <div class="big" style="left: 14px; bottom: -64px; font-size: 330px; letter-spacing: -0.05em">LIN</div>
+
+    <div class="archive">
+      <span class="muted" style="font-size: 9px; letter-spacing: 0.3em">ARCHIVE</span>
+      <span class="date">1 2 3 7</span>
+      <span class="date">1 9 6 1</span>
+      <span class="date">1 9 8 9</span>
+    </div>
+
+    <div class="note">a city<br>in numbers:<br>a sum<br>of dates</div>
+
+    <section class="facts">
+      <h2>IN THIS CITY</h2>
+      <dl>
+        <dt>1237</dt><dd>Cölln first recorded. Founding year</dd>
+        <dt>1244</dt><dd>Berlin first recorded</dd>
+        <dt>13.08.1961</dt><dd>Wall construction begins</dd>
+        <dt>09.11.1989</dt><dd>The Wall opens</dd>
+        <dt>155 km</dt><dd>Border around West Berlin</dd>
+        <dt>892 km²</dt><dd>City area</dd>
+        <dt>12 / 96</dt><dd>Bezirke / Ortsteile</dd>
+        <dt>030</dt><dd>Dialling code</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="row foot">
+    <span>URBAN SPEC / 02</span>
+    <span>52° 31′ N — 13° 24′ E</span>
+    <span>TRAVEL2BERLIN.COM</span>
+  </div>
+
+  <div class="side">BERLIN · EST. 1237 · TYPOGRAPHIC INDEX</div>
+
+</main>
+</body>
+</html>
